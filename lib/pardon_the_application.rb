@@ -1,6 +1,3 @@
-require "pardon_the_application/version"
-
-module PardonTheApplication
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./pardon_the_application/version"
+require_relative "./pardon_the_application/CLI"
+require_relative "./player.rb"
