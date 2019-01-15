@@ -12,13 +12,11 @@ class Argument
       Player.exist?(letter, player_name)
       if Player.exist?(letter, player_name) != nil
           player_var = Player.all.detect{|p| p.name == player_name}
-          #need the player select code from Player.exist?
           @user_player = User_player.new(player_var.name, player_var.url)
           self.argue
       else
-          puts "You clearly don't know your basketball.  '#{player_name}'?  Not even close.  Try again, brain genius.  Or would you rather scurry off now, by typing 'exit' like a coward?"
-          exit = gets.strip
-          self.player_check if exit != "exit"
+          puts "'#{player_name}'?  Who or what is that?  Try again, brain genius."
+          self.player_check
       end
 
     else
@@ -28,7 +26,6 @@ class Argument
   end
 
   def argue
-    #@user_player = User_player.user_player
     random_sample = Random_player.random_player_generator
     @random_player = Random_player.new(random_sample.name, random_sample.url)
     puts "#{user_player.name}?  Ok, we can talk about him.  What do you want to argue about?  Points?  Rebounds?  Assists?  Field Goals?  Efficiency?"

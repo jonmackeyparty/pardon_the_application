@@ -27,8 +27,6 @@ class Player
       Player.new(x.text, "http://basketball-reference.com" + x.attr("href"))
     end
   end
-    # Avi at 53:36 of the CLI Gem walkthrough
-
 
   def add_attributes(player)
       doc = Nokogiri::HTML(open(player.url))
@@ -53,7 +51,6 @@ class Player
         player.field_goals = stats[5]
         player.player_efficiency = stats[9]
       end
-
   end
 
 end
