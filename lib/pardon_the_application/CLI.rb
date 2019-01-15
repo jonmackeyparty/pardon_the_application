@@ -9,11 +9,11 @@ class PardonTheApplication::CLI
   def start
     self.jordan
     puts "Hi! Let's argue about who's the greatest NBA player of all time!"
-    sleep 3
+    sleep 2
     puts "You've probably only been watching the NBA since 2012, but I'll hear you out anyway."
-    sleep 3
+    sleep 2
     puts "There are over 3500 athletes to argue about, so let's narrow it down a little."
-    sleep 3
+    sleep 2
     self.player_check
     self.again?
   end
@@ -24,8 +24,8 @@ class PardonTheApplication::CLI
     argument.player_check(letter)
   end
 
-  def player_compare(category, stat, stat_2, player_1, player_2)
-    puts "#{stat} #{category}?  You think those are all-time numbers?  #{stat} #{category} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{category}."
+  def player_compare(category, stat, stat_2, stat_3, player, player_2, player_3)
+    puts "#{stat} #{category}?  You think those are all-time numbers?  #{stat} #{category} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{category}.  And #{player_3.name} had #{stat_3} #{category}.  You want to talk #{category}?  Look at #{player_3.name}.  Get outta here with that #{player.name} stuff."
   end
 
   def again?

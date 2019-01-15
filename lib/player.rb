@@ -78,8 +78,25 @@ class Random_player < User_player
   def self.random_player_generator
     letter = ('a'..'z').to_a.sample
     Player.player_scrape(letter)
-    random_name = Player.all.sample.name
-    Player.all.detect{|p| p.name == random_name}
+    random_player_name = Player.all.sample.name
+    random_player = Player.all.find{|p| p.name == random_player_name}
+    Player.delete
+    random_player
+  end
+
+end
+
+class Great_player < User_player
+
+  def self.great_player_generator(var)
+    doc = Nokogiri::HTML(open("https://www.basketball-reference.com/leaders/" + var))
+    doc.search("#all_tot tr td a").each do |x|
+      Player.new(x.text, "http://basketball-reference.com" + x.attr("href"))
+    end
+    all_time_great_name = Player.all.sample.name
+    all_time_great = Player.all.find{|p| p.name == all_time_great_name}
+    Player.delete
+    all_time_great
   end
 
 end
