@@ -16,9 +16,9 @@ class Player
     @@all.clear
   end
 
-  def self.exist?(letter, player_name, argument)
+  def self.exist?(letter, player_name)
     self.player_scrape(letter)
-    user_player = Player.all.detect{|p| p.name == player_name}
+    Player.all.detect{|p| p.name == player_name}
   end
 
   def self.player_scrape(letter)

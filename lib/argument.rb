@@ -9,10 +9,11 @@ class Argument
     if letter =~ /^[a-z]$/
       puts "OK, '#{letter}'.  Now, what's this athlete's full name?"
       player_name = gets.strip
-      Player.exist?(letter, player_name, self)
-      if Player.exist?(letter, player_name, self) != nil
+      Player.exist?(letter, player_name)
+      if Player.exist?(letter, player_name) != nil
+          player_var = Player.all.detect{|p| p.name == player_name}
           #need the player select code from Player.exist?
-          @user_player = User_player.new()
+          @user_player = User_player.new(player_var.name, player_var.url)
           self.argue
       else
           puts "You clearly don't know your basketball.  '#{player_name}'?  Not even close.  Try again, brain genius.  Or would you rather scurry off now, by typing 'exit' like a coward?"
