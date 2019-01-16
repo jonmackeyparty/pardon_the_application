@@ -24,8 +24,8 @@ class PardonTheApplication::CLI
     argument.player_check(letter)
   end
 
-  def player_compare(category, stat, stat_2, stat_3, player, player_2, player_3)
-    puts "#{stat} #{category}?  You think those are all-time numbers?  #{stat} #{category} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{category}.  And #{player_3.name} had #{stat_3} #{category}.  You want to talk #{category}?  Look at #{player_3.name}.  Get outta here with that #{player.name} stuff."
+  def player_compare(description, stat, stat_2, stat_3, player, player_2, player_3)
+    puts "#{stat} #{description}?  You think those are all-time numbers?  #{stat} #{description} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{description}.  And #{player_3.name} had #{stat_3} #{description}.  You want to talk #{description}?  Look at #{player_3.name}.  Get outta here with that #{player.name} stuff."
   end
 
   def again?

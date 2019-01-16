@@ -41,7 +41,7 @@ class Player
         player.rebounds = stats[7]
         player.assists = stats[9]
         player.field_goals = stats[11]
-        player.player_efficiency = stats[20]
+        player.player_efficiency = stats[19]
 
       elsif doc.css("div .p2 h4")[1].text == "FT%"
 
