@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Follow the CLI prompts.  DO NOT permit this application to harass you or hurt your feelings.
 
 ## Development
 
