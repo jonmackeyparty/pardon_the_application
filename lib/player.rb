@@ -1,20 +1,5 @@
 class Player
   attr_accessor :name, :url, :nicknames, :points, :rebounds, :assists, :field_goals, :player_efficiency
-  @@all = []
-
-  def initialize(name, url)
-    @name = name
-    @url = url
-    @@all << self
-  end
-
-  def self.all
-    @@all
-  end
-
-  def self.delete
-    @@all.clear
-  end
 
   def self.exist?(letter, player_name)
     player_search = self.player_scrape(letter).detect{|p| p[0] == player_name}
