@@ -25,7 +25,11 @@ class PardonTheApplication::CLI
   end
 
   def player_compare(description, stat, stat_2, stat_3, player, player_2, player_3)
-    puts "#{stat} #{description}?  You think those are all-time numbers?  #{stat} #{description} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{description}.  And #{player_3.name} had #{stat_3} #{description}.  You want to talk #{description}?  Look at #{player_3.name}.  Get outta here with that #{player.name} stuff."
+    if player.name == player_3.name
+      puts "#{player.name}, huh?  Real original.  I mean, have have you ever WATCHED the NBA?  Give me a deep cut, dude.  Everybody in the world knows #{player.name} led the league with #{stat} #{description}.  Try again, and this time don't be so cliche."
+    else
+      puts "#{stat} #{description}?  You think those are all-time numbers?  #{stat} #{description} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{description}.  And #{player_3.name} had #{stat_3} #{description}.  You want to talk #{description}?  Look at #{player_3.name}.  Outta here with that #{player.name} stuff."
+    end
   end
 
   def again?

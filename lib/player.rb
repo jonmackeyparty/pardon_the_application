@@ -17,15 +17,12 @@ class Player
   end
 
   def self.exist?(letter, player_name)
-    self.player_scrape(letter)
-    Player.all.detect{|p| p.name == player_name}
+    player_search = self.player_scrape(letter).detect{|p| p[0] == player_name}
   end
 
   def self.player_scrape(letter)
     doc = Nokogiri::HTML(open("https://www.basketball-reference.com/players/" + letter))
-    doc.search("th a").each do |x|
-      Player.new(x.text, "http://basketball-reference.com" + x.attr("href"))
-    end
+    doc.search("th a").collect{|p| [p.text, p.attr("href")]}
   end
 
   def add_attributes(player)
@@ -74,26 +71,24 @@ class Random_player < User_player
 
   def self.random_player_generator
     letter = ('a'..'z').to_a.sample
-    Player.player_scrape(letter)
-    random_player_name = Player.all.sample.name
-    random_player = Player.all.find{|p| p.name == random_player_name}
-    Player.delete
-    random_player
+    random_sample = Player.player_scrape(letter).sample
   end
 
 end
 
 class Great_player < User_player
 
-  def self.great_player_generator(var)
-    doc = Nokogiri::HTML(open("https://www.basketball-reference.com/leaders/" + var))
-    doc.search("#all_tot tr td a").each do |x|
-      Player.new(x.text, "http://basketball-reference.com" + x.attr("href"))
+  def self.great_player_generator(url, category, player)
+    doc = Nokogiri::HTML(open("https://www.basketball-reference.com/leaders/" + url))
+    top_dog = doc.search("#all_tot tr td a").collect{|p| [p.text, p.attr("href")]}.first
+    great_sample = doc.search("#all_tot tr td a").collect{|p| [p.text, p.attr("href")]}[0..25].sample
+    great_player = Great_player.new(great_sample[0], "http://basketball-reference.com" + great_sample[1])
+    instance_name = "@#{category}"
+    if player.instance_variable_get(instance_name).to_f >= great_player.instance_variable_get(instance_name).to_f
+      great_player = Great_player.new(top_dog[0], "http://basketball-reference.com" + top_dog[1])
+    else
+      great_player
     end
-    all_time_great_name = Player.all.sample.name
-    all_time_great = Player.all.find{|p| p.name == all_time_great_name}
-    Player.delete
-    all_time_great
   end
 
 end
