@@ -30,10 +30,7 @@ class Player
 
   def add_attributes(player)
       doc = Nokogiri::HTML(open(player.url))
-      stats = []
-      doc.css("div .stats_pullout p").each do |a|
-        stats << a.text
-      end
+      stats = doc.css("div .stats_pullout p").collect{|a| a.text}
       stats.reject!(&:empty?)
       if stats.include?("2018-19") == true
 
