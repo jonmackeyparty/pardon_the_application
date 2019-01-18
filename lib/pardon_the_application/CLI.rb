@@ -15,7 +15,6 @@ class PardonTheApplication::CLI
     puts "There are over 3500 athletes to argue about, so let's narrow it down a little."
     sleep 2
     self.player_check
-    self.again?
   end
 
   def player_check
@@ -26,23 +25,28 @@ class PardonTheApplication::CLI
 
   def player_compare(description, stat, stat_2, stat_3, player, player_2, player_3)
     if player.name == player_3.name
-      puts "#{player.name}, huh?  Real original.  I mean, have have you ever WATCHED the NBA?  Give me a deep cut, dude.  Everybody in the world knows #{player.name} led the league with #{stat} #{description}.  Try again, and this time don't be so cliche."
+      puts "#{player.name} and #{description}, huh?  Real original.  I mean, have have you ever WATCHED the NBA?  Give me a deep cut, dude.  Everybody in the world knows #{player.name} led the league with #{stat} #{description}.  Try again, and this time don't be so cliche."
     else
       puts "#{stat} #{description}?  You think those are all-time numbers?  #{stat} #{description} is total trash.  Even #{player_2.name}, a known trash player, had #{stat_2} #{description}.  And #{player_3.name} had #{stat_3} #{description}.  You want to talk #{description}?  Look at #{player_3.name}.  Outta here with that #{player.name} stuff."
     end
+    self.again?
   end
 
   def again?
-    puts "Do you want to argue about something else?  Type 'yes' or 'no'."
+    puts "Do you want to argue about another stat?  Type 'yes' or 'no'."
     input_2 = gets.strip.downcase
-
     if input_2 == 'yes'
       argument.argue
-      self.again?
     elsif input_2 == 'no'
-      puts "I wouldn't want to get owned any harder than that, either.  Go watch some Hardwood Classics on YouTube or something!"
-      sleep(5)
-      self.jordan
+      puts "Do you want to argue about a different player? Type 'yes' or 'no'."
+      input_3 = gets.strip.downcase
+        if input_3 == 'yes'
+          self.player_check
+        else
+          puts "I wouldn't want to get owned any harder than that, either.  Go watch some Hardwood Classics on YouTube or something!"
+          sleep(5)
+          self.jordan
+        end
     else
       puts "I'm going to interpret that mumbling as surrender.  Adios!"
       sleep(3)
